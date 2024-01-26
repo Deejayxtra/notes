@@ -91,6 +91,7 @@ func (implStrings) FileAppendStrings(filename string, strings []string) {
 	}
 }
 
+// if file already exists it empties it
 func (implStrings) FileCreate(filename string) {
 	file, err := os.Create(filename)
 	if err != nil {

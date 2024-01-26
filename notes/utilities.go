@@ -90,3 +90,19 @@ func (implStrings) FileAppendStrings(filename string, strings []string) {
 		}
 	}
 }
+
+func (implStrings) FileCreate(filename string) {
+	file, err := os.Create(filename)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	file.Close()
+}
+
+func (implStrings) FileDelete(filename string) {
+	err := os.Remove(filename)
+	if err != nil {
+		log.Println(err)
+	}
+}

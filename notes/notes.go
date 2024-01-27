@@ -28,10 +28,27 @@ func AddNote(collection, text string) {
 	newNote := fmt.Sprintf("%03d - %s", nextFileNumber, text)
 	file = append(file, newNote)
 
-	Utilities.FileCreate(collection)
+	Utilities.FileMakeEmpty(collection)
 	Utilities.FileAppendStrings(collection, file)
 }
 
 func DeleteNote(collection string, id int) {
-
+	strArr := Utilities.FileGetStrings(collection)
+	if id < 0 || len(strArr) <= id {
+		fmt.Println("Invalid Id")
+		return
+	}
+	for i := id - 1; i < len(strArr)-1; i++ {
+		s := strArr[i+1]
+		before, after, found := strings.Cut(s, " - ")
+		if found {
+			num, _ := strconv.Atoi(before)
+			num--
+			s = fmt.Sprintf("%03d - %s", num, after)
+		}
+		strArr[i] = s
+	}
+	strArr = strArr[:len(strArr)-1]
+	Utilities.FileMakeEmpty(collection)
+	Utilities.FileAppendStrings(collection, strArr)
 }

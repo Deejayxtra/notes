@@ -1,5 +1,7 @@
 package main
 
+import "notes/notes"
+
 func main() {
-	//TODO create new or use previous collection and call userinterace
+	notes.UserInterface("foobar")
 }

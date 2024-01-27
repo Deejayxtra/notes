@@ -1,7 +1,7 @@
 package notes
 
-func ShowNotes(collection string) {
-	return //TODO
+func ShowNotes(collection string) []string {
+	return []string{} //TODO
 }
 
 func AddNote(collection, text string) {

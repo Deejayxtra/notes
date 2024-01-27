@@ -22,13 +22,14 @@ func displayMenu() int {
 	return choice
 }
 
-func showNotes() {
+func showNotes(collection string) {
 	fmt.Println("Notes:")
+	ShowNotes(collection)
 	// Kutsutaan kokoelman käsittelijän funktiota muistiinpanojen hakemiseksi
 	// ja tulostetaan muistiinpanot näytölle
 }
 
-func addNote() {
+func addNote(collection string) {
 	fmt.Println("Enter note:")
 	scanner := bufio.NewScanner(os.Stdin)
 	if scanner.Scan() {
@@ -36,18 +37,19 @@ func addNote() {
 		// Kutsutaan kokoelman käsittelijän funktiota uuden muistiinpanon lisäämiseksi
 		// Huomaa, että tämä on vain esimerkki, oikea kutsu riippuu kokoelman toteutuksesta
 		//		addNoteToCollection(noteText)
+		AddNote(collection, noteText)
 		fmt.Println("Note added successfully.")
-		fmt.Println(noteText)
 	}
 }
 
-func deleteNote() {
+func deleteNote(collection string) {
 	fmt.Println("Enter note ID to delete:")
 	var noteID int
 	fmt.Scanln(&noteID)
 	// Kutsutaan kokoelman käsittelijän funktiota muistiinpanon poistamiseksi
 	// Huomaa, että tämä on vain esimerkki, oikea kutsu riippuu kokoelman toteutuksesta
 	//	deleteNoteFromCollection(noteID)
+	DeleteNote(collection, noteID)
 	fmt.Println("Note deleted successfully.")
 }
 
@@ -57,11 +59,11 @@ func UserInterface(collection string) {
 
 		switch choice {
 		case 1:
-			showNotes()
+			showNotes(collection)
 		case 2:
-			addNote()
+			addNote(collection)
 		case 3:
-			deleteNote()
+			deleteNote(collection)
 		case 4:
 			fmt.Println("Exiting program.")
 			return

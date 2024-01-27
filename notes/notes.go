@@ -1,15 +1,17 @@
 package notes
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"strconv"
 	"strings"
 )
 
-func ShowNotes(collection string) []string {
-	return Utilities.FileGetStrings(collection)
+func ShowNotes(collection string) {
+	strings := Utilities.FileGetStrings(collection)
+	for _, s := range strings {
+		fmt.Println(s)
+	}
+	return
 }
 
 func AddNote(collection, text string) {
@@ -22,12 +24,8 @@ func AddNote(collection, text string) {
 	}
 
 	nextFileNumber := lastFileNumber + 1
-	fmt.Print("Enter the note text: ")
-	scanner := bufio.NewScanner(os.Stdin)
-	scanner.Scan()
-	fileText := scanner.Text()
 
-	newNote := fmt.Sprintf("%03d - %s", nextFileNumber, fileText)
+	newNote := fmt.Sprintf("%03d - %s", nextFileNumber, text)
 	file = append(file, newNote)
 
 	Utilities.FileCreate(collection)

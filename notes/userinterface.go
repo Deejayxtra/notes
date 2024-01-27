@@ -14,7 +14,11 @@ func displayMenu() int {
 	fmt.Println("4. Exit")
 
 	var choice int
-	fmt.Scanln(&choice)
+	_, err := fmt.Scanln(&choice)
+	if err != nil {
+		fmt.Println("Error reading input:", err)
+		return 0 // Palautetaan 0, jotta pääohjelman silmukka pysähtyy ja käyttäjä näkee virheilmoituksen
+	}
 	return choice
 }
 
@@ -62,7 +66,7 @@ func UserInterface(collection string) {
 			fmt.Println("Exiting program.")
 			return
 		default:
-			fmt.Println("Invalid choice")
+			fmt.Println("Invalid choice. Please select a valid option.")
 		}
 	}
 }

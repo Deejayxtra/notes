@@ -10,7 +10,6 @@ import (
 
 func ShowNotes(collection string) []string {
 	return Utilities.FileGetStrings(collection)
-
 }
 
 func AddNote(collection, text string) {
@@ -36,5 +35,5 @@ func AddNote(collection, text string) {
 }
 
 func DeleteNote(collection string, id int) {
-	
+
 }

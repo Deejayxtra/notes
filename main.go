@@ -2,10 +2,8 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"notes/notes"
-
-
+	"os"
 )
 
 func main() {
@@ -16,9 +14,9 @@ func main() {
 	}
 
 	collection := os.Args[1]
+	notes.UserInterface(collection)
 	displayMenu(collection)
 }
-
 
 func displayMenu(collection string) {
 	var choice int

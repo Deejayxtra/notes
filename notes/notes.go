@@ -11,7 +11,7 @@ func ShowNotes(collection string) {
 	for _, s := range strings {
 		fmt.Println(s)
 	}
-	return
+	//return
 }
 
 func AddNote(collection, text string) {

@@ -1,5 +1,17 @@
 package main
 
+import (
+	"fmt"
+	"notes/notes"
+
+)
+
 func main() {
-	//TODO create new or use previous collection and call userinterace
+	fmt.Println(notes.ShowNotes("file"))
+
+	collection := "file" 
+	var fileText string
+	notes.AddNote(collection, fileText)
+
 }
+

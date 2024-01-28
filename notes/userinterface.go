@@ -50,7 +50,6 @@ func deleteNote(collection string) {
 	// Huomaa, että tämä on vain esimerkki, oikea kutsu riippuu kokoelman toteutuksesta
 	//	deleteNoteFromCollection(noteID)
 	DeleteNote(collection, noteID)
-	fmt.Println("Note deleted successfully.")
 }
 
 func UserInterface(collection string) {

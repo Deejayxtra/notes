@@ -1,16 +1,17 @@
 package notes
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"strconv"
 	"strings"
 )
 
-func ShowNotes(collection string) []string {
-	return Utilities.FileGetStrings(collection)
-
+func ShowNotes(collection string) {
+	strings := Utilities.FileGetStrings(collection)
+	for _, s := range strings {
+		fmt.Println(s)
+	}
+	return
 }
 
 func AddNote(collection, text string) {
@@ -23,18 +24,31 @@ func AddNote(collection, text string) {
 	}
 
 	nextFileNumber := lastFileNumber + 1
-	fmt.Print("Enter the note text: ")
-	scanner := bufio.NewScanner(os.Stdin)
-	scanner.Scan()
-	fileText := scanner.Text()
 
-	newNote := fmt.Sprintf("%03d - %s", nextFileNumber, fileText)
+	newNote := fmt.Sprintf("%03d - %s", nextFileNumber, text)
 	file = append(file, newNote)
 
-	Utilities.FileCreate(collection)
+	Utilities.FileMakeEmpty(collection)
 	Utilities.FileAppendStrings(collection, file)
 }
 
 func DeleteNote(collection string, id int) {
-	
+	strArr := Utilities.FileGetStrings(collection)
+	if id < 0 || len(strArr) <= id {
+		fmt.Println("Invalid Id")
+		return
+	}
+	for i := id - 1; i < len(strArr)-1; i++ {
+		s := strArr[i+1]
+		before, after, found := strings.Cut(s, " - ")
+		if found {
+			num, _ := strconv.Atoi(before)
+			num--
+			s = fmt.Sprintf("%03d - %s", num, after)
+		}
+		strArr[i] = s
+	}
+	strArr = strArr[:len(strArr)-1]
+	Utilities.FileMakeEmpty(collection)
+	Utilities.FileAppendStrings(collection, strArr)
 }

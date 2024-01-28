@@ -34,7 +34,7 @@ func AddNote(collection, text string) {
 
 func DeleteNote(collection string, id int) {
 	strArr := Utilities.FileGetStrings(collection)
-	if id < 0 || len(strArr) <= id {
+	if id < 0 || len(strArr) < id {
 		fmt.Println("Invalid Id")
 		return
 	}

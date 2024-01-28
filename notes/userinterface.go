@@ -7,7 +7,7 @@ import (
 )
 
 func displayMenu() int {
-	fmt.Println("Select operation:")
+	fmt.Println("\vSelect operation:")
 	fmt.Println("1. Show notes.")
 	fmt.Println("2. Add a note.")
 	fmt.Println("3. Delete a note.")
@@ -23,14 +23,14 @@ func displayMenu() int {
 }
 
 func showNotes(collection string) {
-	fmt.Println("Notes:")
+	fmt.Println("\vNotes:")
 	ShowNotes(collection)
 	// Kutsutaan kokoelman käsittelijän funktiota muistiinpanojen hakemiseksi
 	// ja tulostetaan muistiinpanot näytölle
 }
 
 func addNote(collection string) {
-	fmt.Println("Enter note:")
+	fmt.Println("\vEnter the note text:")
 	scanner := bufio.NewScanner(os.Stdin)
 	if scanner.Scan() {
 		noteText := scanner.Text()
@@ -43,7 +43,7 @@ func addNote(collection string) {
 }
 
 func deleteNote(collection string) {
-	fmt.Println("Enter note ID to delete:")
+	fmt.Println("\vEnter the number of note to remove or 0 to cancel:")
 	var noteID int
 	fmt.Scanln(&noteID)
 	// Kutsutaan kokoelman käsittelijän funktiota muistiinpanon poistamiseksi
@@ -65,7 +65,7 @@ func UserInterface(collection string) {
 		case 3:
 			deleteNote(collection)
 		case 4:
-			fmt.Println("Exiting program.")
+			fmt.Println("\vExiting program.")
 			return
 		default:
 			fmt.Println("Invalid choice. Please select a valid option.")
